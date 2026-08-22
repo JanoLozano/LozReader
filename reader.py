@@ -9,7 +9,7 @@ class Reader:
             PythonAdapter()
         ]
 
-    def read(self, file_path: Path, relative_path: Path) -> bool:
+    def read(self, file_path: Path, relative_path: Path) -> ModuleModel | None:
 
         for adapter in self.adapters:
             if adapter.supports(file_path):
