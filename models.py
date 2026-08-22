@@ -45,6 +45,7 @@ class ClassModel:
     attributes: list[AttributeModel] = field(default_factory=list)
     methods: list[FunctionModel] = field(default_factory=list)
     imports: list[ImportModel] = field(default_factory=list)
+    decorators: list[DecoratorModel] = field(default_factory=list)
 
 # Representa un módulo Python y sus elementos de nivel superior.
 @dataclass
