@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from .models import ProjectModel, DirectoryModel, FileModel
-from .reader import PythonReader
+from .reader import PythonAdapter
 
 
 DEFAULT_IGNORED_DIRS = {
@@ -16,7 +16,7 @@ DEFAULT_IGNORED_DIRS = {
 class ProjectReader:
     def __init__(self, project_path: str):
         self.project_path = Path(project_path)
-        self.python_reader = PythonReader()
+        self.python_reader = PythonAdapter()
 
     def read(self) -> ProjectModel:
         project_model = ProjectModel(
