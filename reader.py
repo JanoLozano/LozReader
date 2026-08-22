@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from .adapters.python_adapter import PythonAdapter
-from models import ModuleModel
+from .models import ModuleModel
 
 class Reader:
     def __init__(self):

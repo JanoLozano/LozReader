@@ -31,7 +31,7 @@ class PythonAdapter(LanguageAdapter):
 
             # Import / from import a nivel módulo
             if isinstance(statement, cst.SimpleStatementLine):
-                imports = self._read_imports(
+                imports = self._read_import(
                     statement,
                     scope="module",
                     owner=None
@@ -101,7 +101,7 @@ class PythonAdapter(LanguageAdapter):
                 # Imports o atributos
                 if isinstance(statement, cst.SimpleStatementLine):
 
-                    imports = self._read_imports(
+                    imports = self._read_import(
                         statement,
                         scope="class",
                         owner=class_model.name
@@ -111,7 +111,7 @@ class PythonAdapter(LanguageAdapter):
                         imports
                     )
 
-                    attribute_models = self._read_attributes(
+                    attribute_models = self._read_attribute(
                         statement
                     )
 
@@ -176,7 +176,7 @@ class PythonAdapter(LanguageAdapter):
             for statement in function_node.body.body:
 
                 if isinstance(statement, cst.SimpleStatementLine):
-                    imports = self._read_imports(
+                    imports = self._read_import(
                         statement,
                         scope=scope,
                         owner=function_name
@@ -188,7 +188,7 @@ class PythonAdapter(LanguageAdapter):
 
         return function_model, function_imports
 
-    def _read_imports(self, statement: cst.SimpleStatementLine, scope: str, owner: str | None) -> list[ImportModel]:
+    def _read_import(self, statement: cst.SimpleStatementLine, scope: str, owner: str | None) -> list[ImportModel]:
         imports = []
 
         for small_statement in statement.body:
@@ -219,7 +219,7 @@ class PythonAdapter(LanguageAdapter):
 
         return imports
 
-    def _read_attributes(self, statement: cst.SimpleStatementLine) -> list[AttributeModel]:
+    def _read_attribute(self, statement: cst.SimpleStatementLine) -> list[AttributeModel]:
         attributes = []
 
         for small_statement in statement.body:
